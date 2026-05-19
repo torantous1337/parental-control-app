@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    device_admin_policies.xml
+    Declares the device-admin capabilities this receiver is allowed to use.
+    Reference this from the <meta-data> tag inside the <receiver> block.
+
+    All capabilities listed here must also have the corresponding API calls
+    in AdminReceiver.applyBaselinePolicy(); unused capabilities should be
+    removed to follow the principle of least privilege.
+-->
+<device-admin>
+    <uses-policies>
+        <!-- Required for DO mode; lets us set global device policies. -->
+        <limit-password />
+
+        <!-- Lock-screen / screen-lock enforcement. -->
+        <watch-login />
+        <reset-password />
+        <force-lock />
+
+        <!-- Wipe device (emergency reset if device is unrecoverable). -->
+        <wipe-data />
+
+        <!-- Restrict which apps can be installed or run. -->
+        <set-global-proxy />
+
+        <!--
+            expire-password: optionally require the child to periodically
+            rotate their PIN (useful for accountability features).
+        -->
+        <expire-password />
+
+        <!--
+            encrypted-storage: enforce full-disk or file-based encryption.
+            Required for GDPR / COPPA compliance on managed devices.
+        -->
+        <encrypted-storage />
+
+        <!--
+            disable-camera: parental control use case — prevent photo/video
+            capture in unsupervised contexts.  Toggle programmatically via
+            DevicePolicyManager.setCameraDisabled().
+        -->
+        <disable-camera />
+
+        <!--
+            disable-keyguard-features: prevents disabling the lock screen or
+            bypassing the secure-keyguard flow.
+        -->
+        <disable-keyguard-features />
+    </uses-policies>
+</device-admin>
